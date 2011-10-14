@@ -36,4 +36,15 @@ io.configure(function () {
 });
 
 io.sockets.on('connection', function (socket) {
+  socket.on('createPost', function (data) {
+    socket.broadcast.emit('showPost', data);
+  });
+
+  socket.on('createComment', function (data) {
+    socket.broadcast.emit('showComment', data);
+  });
+
+  socket.on('createTag', function (data) {
+    socket.broadcast.emit('showTag', data);
+  });
 });
