@@ -1,9 +1,4 @@
-Anoside == Anonymous side
+anoside-sio
 =============================
 
-匿名でつぶやきが投稿できるWebアプリで使用する、Socket.IOサーバです。
-
-TODO
--------
-
-- テスト
+匿名でつぶやきが投稿できるWebアプリ「Anoside」で使用する、Socket.IOサーバです。
