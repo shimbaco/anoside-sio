@@ -18,8 +18,8 @@ io.configure(function () {
         var userId = JSON.parse(reply).user_id;
 
         if (userId) {
-          console.log('ユーザID: ' + userId);
           var user = { id: userId };
+
           return callback(null, user);
         }
         return callback(null, false);
@@ -29,7 +29,9 @@ io.configure(function () {
     findByCookie(cookie, function (err, user) {
       if (err) return callback(err);
       if (!user) return callback(null, false);
+
       handshakeData.user = user;
+      
       callback(null, true);
     });
   });
@@ -46,5 +48,15 @@ io.sockets.on('connection', function (socket) {
 
   socket.on('createTag', function (data) {
     socket.broadcast.emit('showTag', data);
+  });
+
+  socket.on('deleteTag', function (data) {
+    socket.broadcast.emit('deleteTag', data);
+  });
+});
+
+var tags = io.of('/tags').on('connection', function (socket) {
+  socket.on('joinTagRoom', function (data) {
+    socket.join(data);
   });
 });
