@@ -1,5 +1,5 @@
 var utils = require('connect').utils
-  , io = require('socket.io').listen(8080)
+  , io = require('socket.io').listen(4000)
   , redis = require('redis');
 
 var client = redis.createClient()
